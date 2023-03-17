@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Styles/Login.css";
 
 function Login() {
@@ -18,6 +19,12 @@ function Login() {
         </fieldset>
         <input type="submit" />
       </form>
+      <p>
+        Нет аккаунта? Заведите!
+        <button>
+          <Link to="/register">Зарегестрироваться</Link>
+        </button>
+      </p>
     </div>
   );
 }

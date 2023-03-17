@@ -1,4 +1,5 @@
 import React from "react";
+import { Formik } from "formik";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
@@ -15,41 +16,24 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Routes>
-          {/* <Route
+          <Route
             path="/"
-            element={
-              loggedIn ? (
-                <Navigate to="/chiper" replace />
-              ) : (
-                <Navigate to="/login" replace />
-              )
-            }
-          /> */}
+            element={<ProtectedRoute loggedIn={loggedIn} element={Chiper} />}
+          />
           <Route
             path="/chiper"
             element={<ProtectedRoute loggedIn={loggedIn} element={Chiper} />}
           />
-          <Route path="/my-profile" element={<MyProfile />} />
           <Route
-            path="/login"
-            element={
-              <div className="loginContainer">
-                <Login />
-              </div>
-            }
+            path="/my-profile"
+            element={<ProtectedRoute loggedIn={loggedIn} element={Chiper} />}
           />
-          <Route
-            path="/register"
-            element={
-              <div className="registerContainer">
-                <Register />
-              </div>
-            }
-          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="*"
             element={
-              <div>
+              <div className="error-container">
                 <h1>404 страница не найдена</h1>
               </div>
             }
