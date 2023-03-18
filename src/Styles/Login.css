@@ -40,3 +40,7 @@
     background-color: green;
     border: 1px solid black;
 }
+
+.error-border {
+  border: 1px solid red;
+}
