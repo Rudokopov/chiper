@@ -1,6 +1,6 @@
 {
   "name": "crypto-chiper",
-  "homepage": "https://rudokopov.github.io/chipher/",
+  "homepage": "https://rudokopov.github.io/chiper/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
