@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/chiper/static/css/main.3510e3fa.css",
+    "main.js": "/chiper/static/js/main.2ad87826.js",
+    "index.html": "/chiper/index.html",
+    "main.3510e3fa.css.map": "/chiper/static/css/main.3510e3fa.css.map",
+    "main.2ad87826.js.map": "/chiper/static/js/main.2ad87826.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3510e3fa.css",
+    "static/js/main.2ad87826.js"
+  ]
+}
