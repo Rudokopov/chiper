@@ -6,7 +6,37 @@
   /* max-width: 80vw; */
 }
 
-.login-title {
+.enter-form {
+  display: flex;
+  flex-direction: column;
+}
 
-  margin-top: 270px;
+.login-title {
+  margin-top: 240px;
+  margin-bottom: 10px;
+}
+
+.login-fieldset {
+  all: unset;
+}
+
+.login-input {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.login-input:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.button-submit_login {
+    all: unset;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 80px;
+    padding: 5px;
+    cursor: pointer;
+    color: #fff;
+    background-color: green;
+    border: 1px solid black;
 }

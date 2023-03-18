@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import "./Styles/Register.css";
+
+import * as auth from "./Auth";
+
+// Написать возможность регистрации
 
 function validateUsername(value) {
   let error;
@@ -8,6 +13,26 @@ function validateUsername(value) {
     error = "Имя не может быть короче двух символов";
   } else if (value === "admin") {
     error = "Nice try!";
+  }
+  return error;
+}
+
+function validateEmail(value) {
+  let error;
+  if (!value) {
+    error = "Required";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+    error = "Invalid email address";
+  }
+  return error;
+}
+
+function validatePassword(value) {
+  let error;
+  if (!value) {
+    error = "Заполните поле";
+  } else if (value.length < 4) {
+    error = "Пароль легкий";
   }
   return error;
 }
@@ -21,28 +46,14 @@ function validateCurrentPassword(value) {
 }
 
 export default function Register() {
-  const [isTrue, setIsTrue] = useState(Boolean);
-
-  const handleChangeTrue = () => {
-    setIsTrue(false);
-  };
-
-  function validatePassword(value) {
-    let error;
-    if (!value) {
-      error = "Заполните поле";
-    } else if (value.length < 4) {
-      error = "Пароль легкий";
-    }
-    return error;
-  }
-
+  const navigate = useNavigate();
   return (
     <div className="register-container">
       <h1 className="register-title">Регистрация</h1>
       <Formik
         initialValues={{
           username: "",
+          email: "",
           password: "",
           currentPassword: "",
         }}
@@ -51,9 +62,10 @@ export default function Register() {
             console.log("Неправильный пароль");
             return;
           }
-          if (!values.errors) {
-            setIsTrue(false);
-          }
+          const { username, password, email } = values;
+          auth.register(username, password, email).then((res) => {
+            navigate("/login", { replace: true });
+          });
           console.log(values);
         }}
       >
@@ -69,6 +81,18 @@ export default function Register() {
             />
             {errors.username && touched.username && (
               <div className="error-message">{errors.username}</div>
+            )}
+
+            <Field
+              name="email"
+              validate={validateEmail}
+              placeholder="Введите почту"
+              className={`${
+                errors.email ? "input-field error-field" : "input-field"
+              }`}
+            />
+            {errors.email && touched.email && (
+              <div className="error-message">{errors.email}</div>
             )}
 
             <Field
@@ -99,14 +123,7 @@ export default function Register() {
               <div className="error-message">{errors.currentPassword}</div>
             )}
 
-            <button
-              className={`${
-                isTrue
-                  ? "button-submit"
-                  : "button-submit button-submit_disabled"
-              }`}
-              type="submit"
-            >
+            <button className="button-submit" type="submit">
               Отправить
             </button>
           </Form>
