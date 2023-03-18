@@ -1,4 +1,4 @@
-# [Cryptographer](https://rudokopov.github.io/login)
+# [Cryptographer](https://rudokopov.github.io/chiper)
 
 Небольшое приложение, написанное в рамках самообучения для практики работы с авторизацией и регистрацией на фронтенде
 
